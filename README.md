@@ -1,17 +1,16 @@
 # テーブル設計
 
   ## usersテーブル
-｜ Column               | Type   | Option      |
-｜ -------------------  | -----  | ----------- |
-｜ email                | string | null: false, unique:true
-｜ password             | string | null: false |
-｜ encrypted_password   | string | null: false |
-｜ nickname             | string | null: false |
-｜ last_name            | text   | null: false |
-｜ first_name           | text   | null: false |
-｜ last_kana            | text   | null: false |
-｜ first_kana           | text   | null: false |
-｜ birthday             | date   | null: false |
+｜ Column               | Type     | Option      |
+｜ -------------------  | -----    | ----------- |
+｜ email                | string   | null: false, unique:true
+｜ encrypted_password   | string   | null: false |
+｜ nickname             | string   | null: false |
+｜ last_name            | string   | null: false |
+｜ first_name           | string   | null: false |
+｜ last_kana            | string   | null: false |
+｜ first_kana           | string   | null: false |
+｜ birthday             | date     | null: false |
  ### Association
 - has_many :items
 - has_many :orders
@@ -27,9 +26,9 @@
 ｜ block_number  | string     | null: false |
 ｜ building_name | string     |             |
 ｜ phone         | string     | null: false |
-｜ oder_id       | references | null: false, foreign_key:true
+｜ oder          | references | null: false, foreign_key:true
  ### Association
-- has_many :orders
+- belongs :order
 
 
 
@@ -45,7 +44,7 @@
 ｜ prefecture_id    | integer    | null: false | ★active hash(addressesテーブルと兼用)
 ｜ delivery_days_id | integer    | null: false | ★active hash
 ｜ bland_id         | integer    | null: false | ★active hash
-｜ user_id(出品者)   | references | null: false,foreign_key:true
+｜ user(出品者)      | references | null: false,foreign_key:true
  ### Association
 - has_one :orders
 - belongs_to :user
@@ -62,9 +61,9 @@
  ## ordersテーブル (誰が購入したか、なんの商品を購入したか。購入履歴テーブル。)※出品者は、商品テーブルにuserの外部キーがあれば確認可能
 ｜ Column    | Type       | Option      |
 ｜ --------- | ---------  | ----------  |
-｜ user_id   | reference  | null: false, foreign_key:true
-｜ item_id   | references | null: false, foreign_key:true    ///referencesだからid不要？
+｜ user      | reference  | null: false, foreign_key:true
+｜ item      | references | null: false, foreign_key:true    
  ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address

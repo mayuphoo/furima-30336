@@ -26,9 +26,9 @@
 ｜ block_number  | string     | null: false |
 ｜ building_name | string     |             |
 ｜ phone         | string     | null: false |
-｜ oder          | references | null: false, foreign_key:true
+｜ order         | references | null: false, foreign_key:true
  ### Association
-- belongs :order
+- belongs_to :order
 
 
 
@@ -46,7 +46,7 @@
 ｜ bland_id         | integer    | null: false | ★active hash
 ｜ user(出品者)      | references | null: false,foreign_key:true
  ### Association
-- has_one :orders
+- has_one :order
 - belongs_to :user
 - belongs_to :category_id
 - belongs_to :status_id
@@ -61,7 +61,7 @@
  ## ordersテーブル (誰が購入したか、なんの商品を購入したか。購入履歴テーブル。)※出品者は、商品テーブルにuserの外部キーがあれば確認可能
 ｜ Column    | Type       | Option      |
 ｜ --------- | ---------  | ----------  |
-｜ user      | reference  | null: false, foreign_key:true
+｜ user      | references | null: false, foreign_key:true
 ｜ item      | references | null: false, foreign_key:true    
  ### Association
 - belongs_to :user

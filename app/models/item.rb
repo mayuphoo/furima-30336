@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :delivery_days_id
     validates :prefecture_id
     validates :shopping_fee_id
-    validates :staus_id
+    validates :status_id
   end
 
 

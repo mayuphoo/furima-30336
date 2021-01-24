@@ -5,6 +5,7 @@ class Item < ApplicationRecord
     belongs_to :prefecture
     belongs_to :shopping_fee
     belongs_to :status
+    has_one_attached :image
 
 
   with_options presence: true do

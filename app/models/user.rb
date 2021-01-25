@@ -11,13 +11,13 @@ class User < ApplicationRecord
     validates :last_kana
     validates :first_kana
     validates :birthday
-    VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze 
+    VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
     validates :password, format: { with: VALID_PASSWORD_REGEX }
     VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々]/
     validates :last_name, format: { with: VALID_NAME_REGEX }
     validates :first_name, format: { with: VALID_NAME_REGEX }
     VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
     validates :last_kana, format: { with: VALID_NAME_KANA_REGEX }
-    validates :first_kana, format: { with: VALID_NAME_KANA_REGEX }  
+    validates :first_kana, format: { with: VALID_NAME_KANA_REGEX }
   end
 end

@@ -127,8 +127,8 @@
     <ul class='item-lists'>
 
       <% if @items[0] != nil %>
-        <li class='list'>
           <% @items.each do |item| %>
+        <li class='list'>
             <div class='item-img-content'>
               <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
 
@@ -145,15 +145,15 @@
               </h3>
               <div class='item-price'>
                 <span><%= item.price %>円<br>
-                <%# <%= item.shopping_fee %></span> 
+                <%= item.shopping_fee.name %></span> 
                 <div class='star-btn'>
                   <%= image_tag "star.png", class:"star-icon" %>
                   <span class='star-count'>0</span>
                 </div>
               </div>
             </div>
-          <% end %>
         </li>
+          <% end %>
       <% end %>
 
       <% if @items.length == 0 %>

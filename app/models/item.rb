@@ -27,4 +27,3 @@ class Item < ApplicationRecord
     validates :status_id
   end
 end
-

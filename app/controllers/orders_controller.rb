@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-#ApplicationControllerを継承してるから、いきなり他モデルを指定しても大丈夫。
   before_action :authenticate_user!, only: [:index]
+  # before_action :self_move_to_root, only: [:index]
+  before_action :move_to_root, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
-#ルーティングでネストされると、paramsで運ばれてくるidの形も変わる。routesで確認。
     @order_address = OrderAddress.new
   end
 
@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(params_check)
     if @order_address.valid?
+      pay_item
       @order_address.save
       redirect_to root_path
     else
@@ -21,7 +22,30 @@ class OrdersController < ApplicationController
 
 private
   def params_check
-    params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :block_number, :building_name, :phone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: params_check[:token],
+      currency: 'jpy'
+    )
+  end
+
+  # def self_move_to_root
+  #   @item = Item.find(params[:item_id])
+  #   @item.user_id == current_user.id
+  #   redirect_to root_path
+  # end
+
+  def move_to_root
+    @item = Item.find(params[:item_id])
+    if @item.order.present? || @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
+
 end
 

@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :block_number, :building_name, :phone, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :city, :block_number, :building_name, :phone, :user_id, :item_id, :token
   #↑ここに定義すれば、急にカラム名を指定してもエラーにならず、Formオブジェクト内で使用できるようになる。
 
   with_options presence: true do
@@ -8,6 +8,7 @@ class OrderAddress
     validates :city
     validates :block_number
     validates :phone, format: { with: /\A\d{10,11}\z/, message: "number is invalid" }
+    validates :token
   end
 #creditのバリデーションも書く
 

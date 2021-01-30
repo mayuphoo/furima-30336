@@ -10,6 +10,8 @@ class OrderAddress
     validates :block_number
     validates :phone, format: { with: /\A\d{10,11}\z/, message: 'number is invalid' }
     validates :token
+    validates :item_id
+    validates :user_id
   end
   # creditのバリデーションも書く
 

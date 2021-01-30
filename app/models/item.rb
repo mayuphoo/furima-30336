@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shopping_fee
   belongs_to :status
   has_one_attached :image
+  has_one :order
 
   with_options presence: true do
     validates :name

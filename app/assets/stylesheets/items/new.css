@@ -81,12 +81,16 @@
 }
 
 .click-upload {
-  margin: 15px 0;
+  margin: 15px 226px 15px 0px;
   min-width: 250px;
 }
 
 .click-upload>p {
   margin-bottom: 15px;
+}
+
+.img-preview{
+  width: 110px;
 }
 
 /* /出品画像 */

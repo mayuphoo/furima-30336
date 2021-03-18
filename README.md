@@ -3,7 +3,7 @@
   ## usersテーブル
 |Column               | Type     | Option      |
 | -------------------  | -----    | ----------- |
-| email                | string   | null: false, unique:true
+| email                | string   | null: false, unique:true|
 | encrypted_password   | string   | null: false |
 | nickname             | string   | null: false |
 | last_name            | string   | null: false |
@@ -40,7 +40,7 @@
 - belongs_to :bland_id
 
 
- ## ordersテーブル (誰が購入したか、なんの商品を購入したか。購入履歴テーブル。)※出品者は、商品テーブルにuserの外部キーがあれば確認可能
+ ## ordersテーブル (購入履歴テーブル。)
 | Column    | Type       | Option      |
 | --------- | ---------  | ----------  |
 | user      | references | null: false, foreign_key:true

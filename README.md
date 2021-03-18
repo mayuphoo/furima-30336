@@ -40,7 +40,7 @@
 - belongs_to :bland_id
 
 
- ## ordersテーブル (購入履歴テーブル。)
+ ## ordersテーブル (購入履歴テーブル)
 | Column    | Type       | Option      |
 | --------- | ---------  | ----------  |
 | user      | references | null: false, foreign_key:true

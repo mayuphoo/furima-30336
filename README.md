@@ -1,6 +1,6 @@
 # テーブル設計
 
-  ## usersテーブル
+## usersテーブル
 |Column               | Type     | Option      |
 | -------------------  | -----    | ----------- |
 | email                | string   | null: false, unique:true|
@@ -16,7 +16,7 @@
 - has_many :orders
 
 
-  ## itemsテーブル 
+## itemsテーブル 
 | Column           | Type       | Option      |
 | ---------        | ---------  | ----------  |
 | name             | string     | null: false |
@@ -40,7 +40,7 @@
 - belongs_to :bland_id
 
 
- ## ordersテーブル (購入履歴テーブル)
+## ordersテーブル (購入履歴テーブル)
 | Column    | Type       | Option      |
 | --------- | ---------  | ----------  |
 | user      | references | null: false, foreign_key:true
@@ -51,7 +51,7 @@
 - has_one :address
 
 
-  ## addressesテーブル 
+## addressesテーブル 
 | Column        | Type       | Option      |
 | ---------     | ---------  | ----------  |
 | postal_code   | string     | null: false |
